@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuneLab Connect | Home Sample Collection</title>
+<meta name="description" content="PuneLab Connect - Home sample collection in Pune and Maharashtra.">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5fafc;color:#12384a}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5edf1}.nav{max-width:1150px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;color:#12384a}.logo span{color:#087f8c}nav a{margin-left:20px;text-decoration:none;color:#12384a;font-weight:700}
+.hero{background:linear-gradient(135deg,#e9fbf7,#edf6ff);padding:55px 20px}.hero-wrap{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}
+.badge{display:inline-block;background:#d4f4ee;color:#056a74;border-radius:999px;padding:7px 13px;font-weight:800;font-size:13px}
+h1{font-size:52px;line-height:1.08;margin:18px 0}.hero p{font-size:19px;color:#526b7b;max-width:650px}
+.btn{display:inline-block;padding:13px 19px;border-radius:10px;text-decoration:none;font-weight:800;margin:7px 5px 0 0}.primary{background:#087f8c;color:#fff}.secondary{background:#fff;color:#087f8c;border:1px solid #b9dfe0}
+.photo-card{background:#fff;border-radius:24px;padding:30px;box-shadow:0 14px 40px rgba(18,56,74,.14)}
+section{padding:65px 20px}.wrap{max-width:1150px;margin:auto}.center{text-align:center}.title{font-size:34px;margin:0 0 8px}.sub{color:#657887;margin:0 0 30px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#fff;border-radius:19px;padding:25px;box-shadow:0 10px 30px rgba(18,56,74,.08)}.icon{font-size:33px}
+.booking{background:#087f8c;color:#fff}.booking .sub{color:#e1f7f3}.form-card{max-width:760px;margin:auto}form{display:grid;grid-template-columns:1fr 1fr;gap:13px}input,textarea{padding:13px;border:1px solid #d6e1e7;border-radius:9px;font-size:15px}textarea{grid-column:1/-1;min-height:100px}.full{grid-column:1/-1}
+.contact p{color:#607483}.phone{color:#087f8c;font-size:18px;font-weight:900;text-decoration:none}
+footer{background:#102f40;color:#dcecf1;padding:35px 20px;text-align:center}
+@media(max-width:800px){nav{display:none}.hero-wrap{grid-template-columns:1fr}h1{font-size:40px}.grid{grid-template-columns:1fr}form{grid-template-columns:1fr}textarea,.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">PuneLab <span>Connect</span></div><nav><a href="#services">Services</a><a href="#about">About</a><a href="#booking">Book</a><a href="#contact">Contact</a></nav></div></header>
+
+<section class="hero">
+<div class="hero-wrap">
+<div>
+<div class="badge">🏠 HOME SAMPLE COLLECTION AVAILABLE</div>
+<h1>Your Health, Our Priority!</h1>
+<p><strong>PuneLab Connect</strong> provides convenient blood and diagnostic sample collection support at your doorstep in Pune and across Maharashtra, subject to service availability.</p>
+<a class="btn primary" href="#booking">📅 Book Home Collection</a>
+<a class="btn secondary" href="tel:+918329066988">📞 8329066988</a>
+<a class="btn secondary" href="tel:+919595653184">📞 9595653184</a>
+</div>
+<div class="photo-card" style="padding:30px;text-align:center">
+<h2 style="margin:0 0 12px;color:#087f8c">PuneLab Connect</h2>
+<p style="margin:0 0 18px;color:#526b7b">Home Sample Collection</p>
+<p style="margin:8px 0;font-weight:800">📞 8329066988</p>
+<p style="margin:8px 0;font-weight:800">📞 9595653184</p>
+<p style="margin:18px 0 0;color:#607483">Pune & All Maharashtra</p>
+</div></div>
+</div>
+</div>
+</section>
+
+<section id="services"><div class="wrap"><div class="center"><h2 class="title">Our Services</h2><p class="sub">Simple, convenient collection support.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">🩸</div><h3>Blood Sample Collection</h3><p>Convenient blood sample collection at home, subject to availability.</p></div>
+<div class="card"><div class="icon">🏠</div><h3>Home Collection</h3><p>Request a collection visit at your preferred location and time.</p></div>
+<div class="card"><div class="icon">📋</div><h3>Booking Support</h3><p>Contact us for your test or sample collection requirements.</p></div>
+</div></div></section>
+
+<section id="about" style="background:#fff"><div class="wrap"><div class="center"><h2 class="title">About PuneLab Connect</h2><p class="sub">Your local home sample collection service.</p></div><div class="card"><p>PuneLab Connect focuses on making diagnostic sample collection easy and convenient for customers in Pune and across Maharashtra. Home collection is available subject to location and service availability.</p></div></div></section>
+
+<section class="booking" id="booking"><div class="wrap"><div class="center"><h2 class="title">Book Home Sample Collection</h2><p class="sub">Fill in your details and send your request on WhatsApp.</p></div>
+<div class="card form-card"><form onsubmit="sendWhatsApp(event)">
+<input id="name" required placeholder="Patient name"><input id="mobile" required type="tel" placeholder="Mobile number">
+<input id="area" required placeholder="Area / City"><input id="date" type="date">
+<input id="time" type="time"><input id="test" placeholder="Test / sample required">
+<textarea id="note" placeholder="Additional information"></textarea>
+<button class="btn primary full" type="submit">💬 Send Booking on WhatsApp</button>
+</form></div></div></section>
+
+<section id="contact"><div class="wrap"><div class="center"><h2 class="title">Contact Us</h2><p class="sub">Get in touch for home collection requests.</p></div>
+<div class="grid">
+<div class="card contact"><h3>📞 Call</h3><a class="phone" href="tel:+918329066988">8329066988</a><br><a class="phone" href="tel:+919595653184">9595653184</a></div>
+<div class="card contact"><h3>📍 Address</h3><p>PuneMaha Lab, Near Lekha Farm, Uttam Nagar, Kiwale, Pune, Maharashtra – 412101</p><a href="https://www.google.com/maps/search/?api=1&query=Near+Lekha+Farm+Uttam+Nagar+Kiwale+Pune+412101" target="_blank">Open in Google Maps →</a></div>
+<div class="card contact"><h3>💬 WhatsApp</h3><p>Send your collection request directly to our team.</p><a href="https://wa.me/918329066988" target="_blank">Chat on WhatsApp →</a></div>
+</div></div></section>
+<footer><strong>PuneLab Connect</strong><br>Home Sample Collection • Pune & Maharashtra<br><small>© 2026 PuneLab Connect. All rights reserved.</small></footer>
+
+<script>
+function sendWhatsApp(e){
+e.preventDefault();
+const g=id=>document.getElementById(id).value.trim();
+const msg=`PuneLab Connect - Home Collection Request\n\nPatient Name: ${g('name')}\nMobile: ${g('mobile')}\nArea/City: ${g('area')}\nPreferred Date: ${g('date')||'Not specified'}\nPreferred Time: ${g('time')||'Not specified'}\nTest/Sample: ${g('test')||'Not specified'}\nNote: ${g('note')||'None'}`;
+window.open('https://wa.me/918329066988?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>
