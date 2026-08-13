@@ -1,72 +1,418 @@
-<section id="tests" style="background:#fff">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PuneLab Connect | Home Sample Collection</title>
+<meta name="description" content="PuneLab Connect provides convenient home blood and diagnostic sample collection support in Pune and Maharashtra.">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5fafc;color:#12384a}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5edf1}
+.nav{max-width:1150px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;color:#12384a}
+.logo span{color:#087f8c}
+nav a{margin-left:20px;text-decoration:none;color:#12384a;font-weight:700}
+
+.hero{background:linear-gradient(135deg,#e9fbf7,#edf6ff);padding:55px 20px}
+.hero-wrap{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}
+.badge{display:inline-block;background:#d4f4ee;color:#056a74;border-radius:999px;padding:7px 13px;font-weight:800;font-size:13px}
+h1{font-size:52px;line-height:1.08;margin:18px 0}
+.hero p{font-size:19px;color:#526b7b;max-width:650px}
+
+.btn{display:inline-block;padding:13px 19px;border-radius:10px;text-decoration:none;font-weight:800;margin:7px 5px 0 0;border:0;cursor:pointer}
+.primary{background:#087f8c;color:#fff}
+.secondary{background:#fff;color:#087f8c;border:1px solid #b9dfe0}
+
+.photo-card{background:#fff;border-radius:24px;padding:12px;box-shadow:0 14px 40px rgba(18,56,74,.14)}
+.photo-card img{width:100%;height:440px;object-fit:cover;object-position:center 28%;border-radius:18px;display:block}
+.photo-caption{text-align:center;padding:13px 8px 7px;font-weight:800}
+.photo-caption small{display:block;color:#647887;font-weight:500;margin-top:3px}
+
+section{padding:65px 20px}
+.wrap{max-width:1150px;margin:auto}
+.center{text-align:center}
+.title{font-size:34px;margin:0 0 8px}
+.sub{color:#657887;margin:0 0 30px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border-radius:19px;padding:25px;box-shadow:0 10px 30px rgba(18,56,74,.08)}
+.icon{font-size:33px}
+
+.search-box{max-width:650px;margin:0 auto 30px;display:flex;gap:10px}
+.search-box input{flex:1;padding:15px;border:1px solid #d6e1e7;border-radius:10px;font-size:16px}
+
+.package-card{display:flex;flex-direction:column}
+.package-card h3{margin-bottom:8px}
+.package-card p{color:#657887;flex:1}
+.package-price{font-size:20px;font-weight:900;color:#087f8c;margin:8px 0}
+.test-tag{display:inline-block;background:#e9f7f5;color:#087f8c;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:700;margin:3px}
+
+.booking{background:#087f8c;color:#fff}
+.booking .sub{color:#e1f7f3}
+.form-card{max-width:760px;margin:auto}
+form{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+input,textarea{padding:13px;border:1px solid #d6e1e7;border-radius:9px;font-size:15px}
+textarea{grid-column:1/-1;min-height:100px}
+.full{grid-column:1/-1}
+
+.contact p{color:#607483}
+.phone{color:#087f8c;font-size:18px;font-weight:900;text-decoration:none}
+
+footer{background:#102f40;color:#dcecf1;padding:35px 20px;text-align:center}
+
+@media(max-width:800px){
+nav{display:none}
+.hero-wrap{grid-template-columns:1fr}
+h1{font-size:40px}
+.photo-card img{height:420px}
+.grid{grid-template-columns:1fr}
+form{grid-template-columns:1fr}
+textarea,.full{grid-column:auto}
+.search-box{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+<div class="logo">PuneLab <span>Connect</span></div>
+<nav>
+<a href="#services">Services</a>
+<a href="#tests">Tests</a>
+<a href="#about">About</a>
+<a href="#booking">Book</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-wrap">
+
+<div>
+<div class="badge">🏠 HOME SAMPLE COLLECTION AVAILABLE</div>
+
+<h1>Your Health, Our Priority!</h1>
+
+<p>
+<strong>PuneLab Connect</strong> provides convenient blood and diagnostic sample collection support at your doorstep in Pune and across Maharashtra, subject to service availability.
+</p>
+
+<a class="btn primary" href="#tests">🧪 Explore Tests</a>
+<a class="btn secondary" href="#booking">📅 Book Home Collection</a>
+
+<br>
+
+<a class="btn secondary" href="tel:+918329066988">📞 8329066988</a>
+<a class="btn secondary" href="tel:+919595653184">📞 9595653184</a>
+</div>
+
+<div class="photo-card">
+<img src="owner-photo.jpg" alt="PuneLab Connect representative">
+<div class="photo-caption">
+PuneLab Connect
+<small>Home Sample Collection • Pune & Maharashtra</small>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
 <div class="wrap">
+
 <div class="center">
-<h2 class="title">🧪 Tests & Packages</h2>
-<p class="sub">Popular tests and health packages — book your home collection.</p>
+<h2 class="title">Our Services</h2>
+<p class="sub">Simple, convenient collection support.</p>
 </div>
 
-<div style="max-width:650px;margin:0 auto 30px">
-<input id="testSearch" type="search" placeholder="🔎 Search test or package..." oninput="searchTests()" style="width:100%;padding:14px;border:1px solid #d6e1e7;border-radius:10px;font-size:16px">
-</div>
-
-<div class="grid" id="testGrid">
+<div class="grid">
 
 <div class="card">
 <div class="icon">🩸</div>
-<h3>Complete Blood Count (CBC)</h3>
-<p>Commonly requested blood test.</p>
-<button class="btn primary" onclick="bookTest('Complete Blood Count (CBC)')">Book Now</button>
+<h3>Blood Sample Collection</h3>
+<p>Convenient blood sample collection at home, subject to availability.</p>
 </div>
 
 <div class="card">
-<div class="icon">🦋</div>
-<h3>Thyroid Profile</h3>
-<p>Request a thyroid-related diagnostic profile.</p>
-<button class="btn primary" onclick="bookTest('Thyroid Profile')">Book Now</button>
+<div class="icon">🏠</div>
+<h3>Home Collection</h3>
+<p>Request a collection visit at your preferred location and time.</p>
 </div>
 
 <div class="card">
-<div class="icon">💉</div>
-<h3>Diabetes Tests</h3>
-<p>Blood sugar and diabetes-related tests.</p>
-<button class="btn primary" onclick="bookTest('Diabetes Tests')">Book Now</button>
+<div class="icon">📋</div>
+<h3>Booking Support</h3>
+<p>Contact us for your test or sample collection requirements.</p>
 </div>
 
 </div>
 </div>
 </section>
-<div class="grid">
-<div class="card"><div class="icon">🩸</div><h3>Blood Sample Collection</h3><p>Convenient blood sample collection at home, subject to availability.</p></div>
-<div class="card"><div class="icon">🏠</div><h3>Home Collection</h3><p>Request a collection visit at your preferred location and time.</p></div>
-<div class="card"><div class="icon">📋</div><h3>Booking Support</h3><p>Contact us for your test or sample collection requirements.</p></div>
-</div></div></section>
 
-<section id="about" style="background:#fff"><div class="wrap"><div class="center"><h2 class="title">About PuneLab Connect</h2><p class="sub">Your local home sample collection service.</p></div><div class="card"><p>PuneLab Connect focuses on making diagnostic sample collection easy and convenient for customers in Pune and across Maharashtra. Home collection is available subject to location and service availability.</p></div></div></section>
 
-<section class="booking" id="booking"><div class="wrap"><div class="center"><h2 class="title">Book Home Sample Collection</h2><p class="sub">Fill in your details and send your request on WhatsApp.</p></div>
-<div class="card form-card"><form onsubmit="sendWhatsApp(event)">
-<input id="name" required placeholder="Patient name"><input id="mobile" required type="tel" placeholder="Mobile number">
-<input id="area" required placeholder="Area / City"><input id="date" type="date">
-<input id="time" type="time"><input id="test" placeholder="Test / sample required">
+<!-- TESTS AND PACKAGES -->
+<section id="tests" style="background:#fff">
+<div class="wrap">
+
+<div class="center">
+<h2 class="title">Tests & Health Packages</h2>
+<p class="sub">Explore commonly requested diagnostic tests and packages.</p>
+</div>
+
+<div class="search-box">
+<input
+id="testSearch"
+type="search"
+placeholder="🔎 Search test or package..."
+oninput="searchTests()">
+</div>
+
+<div class="grid" id="testGrid">
+
+<div class="card package-card" data-search="cbc complete blood count blood">
+<span class="test-tag">Blood Test</span>
+<h3>Complete Blood Count (CBC)</h3>
+<p>Commonly requested blood test. Availability and pricing depend on the service provider.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Complete Blood Count (CBC)')">🩸 Book Now</button>
+</div>
+
+<div class="card package-card" data-search="thyroid thyroid profile tsh t3 t4">
+<span class="test-tag">Profile</span>
+<h3>Thyroid Profile</h3>
+<p>Request a thyroid-related diagnostic profile through available providers.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Thyroid Profile')">🩸 Book Now</button>
+</div>
+
+<div class="card package-card" data-search="diabetes blood sugar glucose hba1c">
+<span class="test-tag">Diabetes</span>
+<h3>Diabetes Tests</h3>
+<p>Explore available blood sugar and diabetes-related tests.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Diabetes Tests')">🩸 Book Now</button>
+</div>
+
+<div class="card package-card" data-search="lipid cholesterol profile">
+<span class="test-tag">Profile</span>
+<h3>Lipid Profile</h3>
+<p>Request a lipid-related diagnostic test through available providers.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Lipid Profile')">🩸 Book Now</button>
+</div>
+
+<div class="card package-card" data-search="vitamin vitamin d b12">
+<span class="test-tag">Vitamin</span>
+<h3>Vitamin Tests</h3>
+<p>Explore available vitamin-related diagnostic tests.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Vitamin Tests')">🩸 Book Now</button>
+</div>
+
+<div class="card package-card" data-search="full body health checkup package">
+<span class="test-tag">Package</span>
+<h3>Full Body Health Package</h3>
+<p>Ask about available health checkup packages and their included tests.</p>
+<div class="package-price">Book for Price</div>
+<button class="btn primary" onclick="bookTest('Full Body Health Package')">🩸 Book Now</button>
+</div>
+
+</div>
+
+<p id="noResults" class="center" style="display:none;color:#657887;margin-top:25px">
+No matching test or package found.
+</p>
+
+</div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+<div class="wrap">
+
+<div class="center">
+<h2 class="title">About PuneLab Connect</h2>
+<p class="sub">Your local home sample collection service.</p>
+</div>
+
+<div class="card">
+<p>
+PuneLab Connect focuses on making diagnostic sample collection easy and convenient for customers in Pune and across Maharashtra. Home collection is available subject to location and service availability.
+</p>
+</div>
+
+</div>
+</section>
+
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+<div class="wrap">
+
+<div class="center">
+<h2 class="title">Book Home Sample Collection</h2>
+<p class="sub">Fill in your details and send your request on WhatsApp.</p>
+</div>
+
+<div class="card form-card">
+
+<form onsubmit="sendWhatsApp(event)">
+
+<input id="name" required placeholder="Patient name">
+
+<input id="mobile" required type="tel" placeholder="Mobile number">
+
+<input id="area" required placeholder="Area / City">
+
+<input id="date" type="date">
+
+<input id="time" type="time">
+
+<input id="test" placeholder="Test / sample required">
+
 <textarea id="note" placeholder="Additional information"></textarea>
-<button class="btn primary full" type="submit">💬 Send Booking on WhatsApp</button>
-</form></div></div></section>
 
-<section id="contact"><div class="wrap"><div class="center"><h2 class="title">Contact Us</h2><p class="sub">Get in touch for home collection requests.</p></div>
+<button class="btn primary full" type="submit">
+💬 Send Booking on WhatsApp
+</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="wrap">
+
+<div class="center">
+<h2 class="title">Contact Us</h2>
+<p class="sub">Get in touch for home collection requests.</p>
+</div>
+
 <div class="grid">
-<div class="card contact"><h3>📞 Call</h3><a class="phone" href="tel:+918329066988">8329066988</a><br><a class="phone" href="tel:+919595653184">9595653184</a></div>
-<div class="card contact"><h3>📍 Address</h3><p>PuneMaha Lab, Near Lekha Farm, Uttam Nagar, Kiwale, Pune, Maharashtra – 412101</p><a href="https://www.google.com/maps/search/?api=1&query=Near+Lekha+Farm+Uttam+Nagar+Kiwale+Pune+412101" target="_blank">Open in Google Maps →</a></div>
-<div class="card contact"><h3>💬 WhatsApp</h3><p>Send your collection request directly to our team.</p><a href="https://wa.me/918329066988" target="_blank">Chat on WhatsApp →</a></div>
-</div></div></section>
-<footer><strong>PuneLab Connect</strong><br>Home Sample Collection • Pune & Maharashtra<br><small>© 2026 PuneLab Connect. All rights reserved.</small></footer>
+
+<div class="card contact">
+<h3>📞 Call</h3>
+<a class="phone" href="tel:+918329066988">8329066988</a>
+<br>
+<a class="phone" href="tel:+919595653184">9595653184</a>
+</div>
+
+<div class="card contact">
+<h3>📍 Address</h3>
+<p>
+PuneMaha Lab, Near Lekha Farm, Uttam Nagar, Kiwale, Pune, Maharashtra – 412101
+</p>
+
+<a href="https://www.google.com/maps/search/?api=1&query=Near+Lekha+Farm+Uttam+Nagar+Kiwale+Pune+412101" target="_blank">
+Open in Google Maps →
+</a>
+</div>
+
+<div class="card contact">
+<h3>💬 WhatsApp</h3>
+<p>Send your collection request directly to our team.</p>
+
+<a href="https://wa.me/918329066988" target="_blank">
+Chat on WhatsApp →
+</a>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<footer>
+<strong>PuneLab Connect</strong>
+<br>
+Home Sample Collection • Pune & Maharashtra
+<br>
+<small>© 2026 PuneLab Connect. All rights reserved.</small>
+</footer>
+
 
 <script>
-function sendWhatsApp(e){
-e.preventDefault();
-const g=id=>document.getElementById(id).value.trim();
-const msg=`PuneLab Connect - Home Collection Request\n\nPatient Name: ${g('name')}\nMobile: ${g('mobile')}\nArea/City: ${g('area')}\nPreferred Date: ${g('date')||'Not specified'}\nPreferred Time: ${g('time')||'Not specified'}\nTest/Sample: ${g('test')||'Not specified'}\nNote: ${g('note')||'None'}`;
-window.open('https://wa.me/918329066988?text='+encodeURIComponent(msg),'_blank');
+
+function bookTest(testName){
+
+document.getElementById("test").value=testName;
+
+document.getElementById("booking").scrollIntoView({
+behavior:"smooth"
+});
+
 }
+
+function searchTests(){
+
+const search=document.getElementById("testSearch").value.toLowerCase().trim();
+
+const cards=document.querySelectorAll("#testGrid .package-card");
+
+let found=0;
+
+cards.forEach(card=>{
+
+const text=card.getAttribute("data-search").toLowerCase();
+
+if(text.includes(search)){
+
+card.style.display="flex";
+found++;
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+document.getElementById("noResults").style.display=
+found===0 ? "block" : "none";
+
+}
+
+
+function sendWhatsApp(e){
+
+e.preventDefault();
+
+const g=id=>document.getElementById(id).value.trim();
+
+const msg=
+`PuneLab Connect - Home Collection Request
+
+Patient Name: ${g('name')}
+Mobile: ${g('mobile')}
+Area/City: ${g('area')}
+Preferred Date: ${g('date')||'Not specified'}
+Preferred Time: ${g('time')||'Not specified'}
+Test/Sample: ${g('test')||'Not specified'}
+Note: ${g('note')||'None'}`;
+
+window.open(
+'https://wa.me/918329066988?text='+encodeURIComponent(msg),
+'_blank'
+);
+
+}
+
 </script>
+
 </body>
 </html>
