@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="2bAp4uUvcUgQKNxDduljtalhN4SsYoAt5E5QWgtIkqY">
+<title>PuneLab Connect | Home Sample Collection in Pune</title>
+<meta name="description" content="PuneLab Connect provides convenient home blood and diagnostic sample collection support in Pune and Maharashtra.">
+<meta name="robots" content="index, follow">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5fafc;color:#12384a;line-height:1.6}
+header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e5edf1;box-shadow:0 3px 15px rgba(18,56,74,.07)}
+.nav{max-width:1150px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:900}.logo span{color:#087f8c}
+nav a{margin-left:18px;text-decoration:none;color:#12384a;font-weight:700}
+.hero{background:linear-gradient(135deg,#e9fbf7,#edf6ff);padding:60px 20px}
+.hero-wrap{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.badge{display:inline-block;background:#d4f4ee;color:#056a74;border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px}
+h1{font-size:50px;line-height:1.08;margin:18px 0}
+.hero p{font-size:18px;color:#526b7b;max-width:650px}
+.btn{display:inline-block;padding:13px 18px;border-radius:10px;text-decoration:none;font-weight:800;margin:6px 4px;border:0;cursor:pointer;font-size:15px}
+.primary{background:#087f8c;color:#fff}.secondary{background:#fff;color:#087f8c;border:1px solid #b9dfe0}
+.photo-card{background:#fff;border-radius:24px;padding:12px;box-shadow:0 14px 40px rgba(18,56,74,.14)}
+.photo-card img{width:100%;height:420px;object-fit:cover;border-radius:18px;display:block}
+.photo-caption{text-align:center;padding:12px;font-weight:800}.photo-caption small{display:block;color:#657887;font-weight:500}
+.marketing{background:#102f40;color:#fff;padding:28px 20px;text-align:center}.marketing strong{font-size:24px}.marketing span{display:block;color:#dcecf1;margin-top:5px}
+section{padding:60px 20px}.wrap{max-width:1150px;margin:auto}.center{text-align:center}
+.title{font-size:34px;margin:0 0 8px}.sub{color:#657887;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border-radius:18px;padding:23px;box-shadow:0 10px 30px rgba(18,56,74,.08);border:1px solid #edf2f4}
+.icon{font-size:32px}
+.founder{display:grid;grid-template-columns:330px 1fr;gap:35px;align-items:center}
+.founder img{width:100%;height:380px;object-fit:cover;border-radius:22px;box-shadow:0 12px 35px rgba(18,56,74,.14)}
+.role{color:#087f8c;font-weight:900}
+.search{max-width:700px;margin:0 auto 22px}.search input{width:100%;padding:15px;border:1px solid #d6e1e7;border-radius:10px;font-size:16px;outline:none}
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px}
+.filter-btn{background:#fff;color:#087f8c;border:1px solid #b9dfe0;padding:8px 13px;border-radius:20px;font-weight:700;cursor:pointer}
+.filter-btn.active{background:#087f8c;color:#fff}
+.test-card{display:flex;flex-direction:column}.test-card h3{margin:8px 0}.test-card p{color:#657887;flex:1}
+.tag{display:inline-block;width:max-content;background:#e9f7f5;color:#087f8c;padding:4px 9px;border-radius:20px;font-size:12px;font-weight:800}
+.old-price{text-decoration:line-through;color:#8a9aa3;font-size:14px}.offer-price{font-size:21px;font-weight:900;color:#087f8c}
+.discount{display:inline-block;margin-left:5px;background:#e8f7ed;color:#16803b;padding:3px 7px;border-radius:6px;font-size:12px;font-weight:900}
+.price-note{font-size:11px;color:#7a8991;margin:4px 0 8px}
+.selected-bar{position:sticky;bottom:12px;z-index:50;display:none;margin:20px auto 0;max-width:700px;background:#fff;border:2px solid #087f8c;border-radius:14px;padding:12px 15px;box-shadow:0 10px 30px rgba(18,56,74,.18)}
+.selected-bar.show{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.selected-bar strong{color:#087f8c}
+.booking{background:#087f8c;color:#fff}.booking .sub{color:#e1f7f3}
+.form-card{max-width:800px;margin:auto}
+form{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+input,textarea{padding:13px;border:1px solid #d6e1e7;border-radius:9px;font-size:15px;font-family:Arial,Helvetica,sans-serif}
+textarea{grid-column:1/-1;min-height:100px;resize:vertical}.full{grid-column:1/-1;width:100%}
+.selected-box{background:#f7fbfc;border:1px solid #d6e1e7;border-radius:10px;padding:14px}
+.selected-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #e8eef0}
+.selected-item:last-child{border-bottom:0}
+.remove-btn{border:0;background:#ffecec;color:#c62828;padding:5px 8px;border-radius:6px;font-weight:700;cursor:pointer}
+.total-box{margin-top:12px;padding:12px;border-radius:9px;background:#e9f7f5;color:#087f8c;font-weight:900}
+.app-box{background:linear-gradient(135deg,#102f40,#087f8c);color:#fff;border-radius:24px;padding:35px;text-align:center}.app-box p{color:#dcecf1}
+.contact p{color:#607483}.phone{color:#087f8c;font-size:18px;font-weight:900;text-decoration:none}
+footer{background:#102f40;color:#dcecf1;padding:35px 20px;text-align:center}footer a{color:#fff}
+@media(max-width:800px){nav{display:none}.hero-wrap{grid-template-columns:1fr}h1{font-size:40px}.grid{grid-template-columns:1fr}.founder{grid-template-columns:1fr}.founder img{height:360px}form{grid-template-columns:1fr}textarea,.full{grid-column:auto}.photo-card img{height:360px}}
+@media(max-width:450px){h1{font-size:35px}.btn{display:block;text-align:center;margin-right:0}.selected-bar.show{align-items:stretch;flex-direction:column}}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+<div class="logo">PuneLab <span>Connect</span></div>
+<nav>
+<a href="#services">Services</a><a href="#tests">Tests</a><a href="#founder">Founder</a><a href="#booking">Book</a><a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-wrap">
+<div>
+<div class="badge">🏠 ✓ Home Sample Collection</div>
+<h1>Trusted Home Sample Collection in Pune</h1>
+<p><strong>PuneLab Connect</strong> makes diagnostic sample collection convenient at your doorstep. Check available tests, select multiple tests and send your booking request directly on WhatsApp.</p>
+<a class="btn primary" href="#tests">🧪 Explore All Tests</a>
+<a class="btn secondary" href="#booking">📅 Book Home Collection</a><br>
+<a class="btn secondary" href="tel:+919595653184">📞 9595653184</a>
+<a class="btn secondary" href="https://wa.me/919595653184" target="_blank">💬 WhatsApp</a>
+</div>
+<div class="photo-card">
+<img src="nazim-founder.jpg" alt="Nazim Nazir Shaikh, Founder and Owner of PuneLab Connect">
+<div class="photo-caption">PuneLab Connect<small>Home Sample Collection • Pune & Maharashtra</small></div>
+</div>
+</div>
+</section>
+
+<div class="marketing">
+<strong>🧪 Market Price Check Karo. Best Available Price Par Test Karo.</strong>
+<span>Compare available options before booking • Final price and availability confirmed at booking</span>
+</div>
+
+<section id="services">
+<div class="wrap">
+<div class="center"><h2 class="title">Our Services</h2><p class="sub">Convenient diagnostic collection support.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">🩸</div><h3>Blood Sample Collection</h3><p>Convenient blood sample collection at home, subject to location and service availability.</p></div>
+<div class="card"><div class="icon">🏠</div><h3>Home Collection</h3><p>Request a collection visit at your preferred location and time.</p></div>
+<div class="card"><div class="icon">📋</div><h3>Booking Support</h3><p>Contact our team for test availability, pricing and collection support.</p></div>
+</div>
+</div>
+</section>
+
+<section id="founder">
+<div class="wrap">
+<div class="founder">
+<img src="nazim-founder.jpg" alt="Nazim Nazir Shaikh">
+<div>
+<h2 class="title">Meet the Founder</h2>
+<h2>NAZIM NAZIR SHAIKH</h2>
+<div class="role">Founder & Owner — PuneLab Connect</div>
+<p>PuneLab Connect ka goal diagnostic sample collection ko simple, convenient aur accessible banana hai. Hum customers ko available testing options aur pricing check karke informed booking karne mein help karte hain.</p>
+<p><strong>📍 Serving Pune & Maharashtra</strong><br><small>Home collection availability depends on location and service coverage.</small></p>
+<p><strong>📞</strong> <a class="phone" href="tel:+919595653184">9595653184</a><br>
+<strong>💬</strong> <a class="phone" href="https://wa.me/919595653184" target="_blank">WhatsApp</a><br>
+<strong>✉️</strong> <a href="mailto:shaikh.nazim1996@gmail.com">shaikh.nazim1996@gmail.com</a><br>
+<strong>📍</strong> Madina Manzil, Kiwale, Pune</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="tests" style="background:#fff">
+<div class="wrap">
+<div class="center"><h2 class="title">🧪 All Available Tests</h2><p class="sub">Search tests, choose a category and add multiple tests to one booking.</p></div>
+<div class="search"><input id="searchBox" type="search" placeholder="🔎 Search blood test, profile or package..." oninput="renderTests()"></div>
+<div class="filters" id="filters"></div>
+<div class="grid" id="testGrid"></div>
+<p id="noResults" class="center" style="display:none;color:#657887">No matching test found.</p>
+
+<div id="selectedBar" class="selected-bar">
+<div><strong id="selectedCount">0 Tests Selected</strong><br><span id="selectedTotal">Estimated Total: ₹0</span></div>
+<a class="btn primary" href="#booking" style="margin:0">View Booking →</a>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="wrap">
+<div class="center"><h2 class="title">About PuneLab Connect</h2><p class="sub">Convenient home sample collection support.</p></div>
+<div class="card">
+<h3>🏠 Healthcare Collection at Your Doorstep</h3>
+<p>PuneLab Connect focuses on making diagnostic sample collection easy and convenient for customers in Pune and across Maharashtra.</p>
+<p>Availability and final provider pricing are confirmed at booking.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="app-box">
+<h2>📱 PuneLab Connect App</h2>
+<p>Our mobile app is planned to make test browsing and booking even easier.</p>
+<strong>🚀 App Coming Soon</strong>
+</div>
+</div>
+</section>
+
+<section class="booking" id="booking">
+<div class="wrap">
+<div class="center"><h2 class="title">Book Home Sample Collection</h2><p class="sub">Select one or more tests and send your booking request on WhatsApp.</p></div>
+<div class="card form-card">
+<form onsubmit="sendWhatsApp(event)">
+<input id="name" required placeholder="Patient name">
+<input id="mobile" required type="tel" placeholder="Mobile number">
+<input id="area" required placeholder="Area / City">
+<input id="date" type="date">
+<input id="time" type="time">
+
+<div class="full">
+<label style="font-weight:800;display:block;margin-bottom:8px">Selected Tests</label>
+<div id="selectedTests" class="selected-box">No tests selected yet. Choose tests above.</div>
+</div>
+
+<div class="full">
+<label style="font-weight:800;display:block;margin-bottom:8px">📋 Prescription / Doctor's Note</label>
+<input id="prescription" type="file" accept="image/*,.pdf" style="width:100%;background:#fff">
+<small style="display:block;color:#657887;margin-top:6px">You may select a prescription image or PDF. Please share only information necessary for your booking.</small>
+</div>
+
+<textarea id="note" placeholder="Additional information"></textarea>
+<button class="btn primary full" type="submit">💬 Send Booking on WhatsApp</button>
+</form>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="wrap">
+<div class="center"><h2 class="title">Contact Us</h2><p class="sub">Get in touch for home collection requests.</p></div>
+<div class="grid">
+<div class="card contact"><h3>📞 Call</h3><a class="phone" href="tel:+919595653184">9595653184</a></div>
+<div class="card contact"><h3>📍 Address</h3><p>Madina Manzil, Kiwale, Pune, Maharashtra</p><a href="https://www.google.com/maps/search/?api=1&query=Madina+Manzil+Kiwale+Pune" target="_blank">Open in Google Maps →</a></div>
+<div class="card contact"><h3>💬 WhatsApp</h3><p>Send your collection request directly to our team.</p><a href="https://wa.me/919595653184" target="_blank">Chat on WhatsApp →</a></div>
+</div>
+</div>
+</section>
+
+<footer>
+<strong>PuneLab Connect</strong><br>
+Home Sample Collection • Pune & Maharashtra<br>
+<a href="tel:+919595653184">📞 9595653184</a> &nbsp;|&nbsp;
+<a href="https://wa.me/919595653184" target="_blank">💬 WhatsApp</a><br>
+<a href="mailto:shaikh.nazim1996@gmail.com">✉️ shaikh.nazim1996@gmail.com</a><br>
+<small>© 2026 PuneLab Connect. All rights reserved.</small>
+</footer>
+
+<script>
+const tests=[
+["Complete Blood Count (CBC)","Hematology",600],["Hemoglobin","Hematology",250],["ESR","Hematology",200],["Platelet Count","Hematology",250],["RBC Count","Hematology",250],["WBC Count","Hematology",250],["Blood Group & Rh Typing","Hematology",300],["Peripheral Smear","Hematology",400],
+["Fasting Blood Sugar","Diabetes",250],["Post Meal Blood Sugar","Diabetes",250],["HbA1c","Diabetes",600],["Insulin - Fasting","Diabetes",700],["Insulin - Post Meal","Diabetes",700],
+["Thyroid Profile","Thyroid",700],["TSH","Thyroid",350],["T3","Thyroid",350],["T4","Thyroid",350],["Free T3","Thyroid",450],["Free T4","Thyroid",450],
+["Liver Function Test (LFT)","Liver",900],["Bilirubin Total","Liver",300],["Bilirubin Direct","Liver",300],["SGOT / AST","Liver",300],["SGPT / ALT","Liver",300],["Alkaline Phosphatase","Liver",350],["GGT","Liver",400],
+["Kidney Function Test (KFT)","Kidney",900],["Creatinine","Kidney",300],["Blood Urea","Kidney",300],["Uric Acid","Kidney",300],["Sodium","Kidney",300],["Potassium","Kidney",300],["Calcium","Kidney",300],
+["Lipid Profile","Heart",800],["Total Cholesterol","Heart",300],["HDL Cholesterol","Heart",300],["LDL Cholesterol","Heart",300],["Triglycerides","Heart",300],
+["Vitamin D","Vitamins",900],["Vitamin B12","Vitamins",800],["Folate","Vitamins",700],
+["Iron Profile","Iron",800],["Serum Iron","Iron",350],["Ferritin","Iron",700],["TIBC","Iron",500],["Transferrin","Iron",600],
+["CRP","Infection",500],["hs-CRP","Infection",700],["Dengue NS1","Infection",500],["Dengue IgG","Infection",500],["Dengue IgM","Infection",500],["Malaria Antigen","Infection",500],
+["Testosterone","Hormones",800],["Progesterone","Hormones",800],["Prolactin","Hormones",700],["LH","Hormones",700],["FSH","Hormones",700],["Estradiol","Hormones",800],["Cortisol","Hormones",700],
+["Full Body Health Checkup","Packages",1800],["Diabetes Health Package","Packages",1200],["Thyroid Health Package","Packages",1200],["Heart Health Package","Packages",1800],["Vitamin Health Package","Packages",1800],["Senior Citizen Health Package","Packages",2200]
+];
+
+let selectedCategory="All";
+let selectedTests=[];
+
+const categories=["All","Hematology","Diabetes","Thyroid","Liver","Kidney","Heart","Vitamins","Iron","Hormones","Infection","Packages"];
+
+function setupFilters(){
+document.getElementById("filters").innerHTML=categories.map((c,i)=>
+`<button class="filter-btn ${i===0?'active':''}" onclick="setCategory('${c}',this)">${c}</button>`
+).join("");
+}
+
+function renderTests(){
+const grid=document.getElementById("testGrid");
+const search=document.getElementById("searchBox").value.toLowerCase().trim();
+grid.innerHTML="";
+let found=0;
+
+tests.forEach((test,index)=>{
+const [name,category,reference]=test;
+const matchesCategory=selectedCategory==="All"||category===selectedCategory;
+const matchesSearch=name.toLowerCase().includes(search)||category.toLowerCase().includes(search);
+
+if(matchesCategory&&matchesSearch){
+const offer=Math.round(reference/2);
+const selected=selectedTests.includes(index);
+grid.innerHTML+=`
+<div class="card test-card">
+<span class="tag">${category}</span>
+<h3>${name}</h3>
+<p>Home collection availability and final provider price are confirmed at booking.</p>
+<div><span class="old-price">Reference ₹${reference}</span><br>
+<span class="offer-price">₹${offer}</span>
+<span class="discount">50% OFF</span></div>
+<div class="price-note">Reference/illustrative price. Final price subject to provider confirmation.</div>
+<button class="btn ${selected?'secondary':'primary'}" onclick="toggleTest(${index})">${selected?'✓ Added':'＋ Add Test'}</button>
+</div>`;
+found++;
+}
+});
+
+document.getElementById("noResults").style.display=found===0?"block":"none";
+updateSummary();
+}
+
+function setCategory(category,button){
+selectedCategory=category;
+document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+renderTests();
+}
+
+function toggleTest(index){
+const pos=selectedTests.indexOf(index);
+if(pos===-1) selectedTests.push(index);
+else selectedTests.splice(pos,1);
+updateSelectedTests();
+renderTests();
+}
+
+function removeTest(position){
+selectedTests.splice(position,1);
+updateSelectedTests();
+renderTests();
+}
+
+function updateSummary(){
+let total=0;
+selectedTests.forEach(i=>total+=Math.round(tests[i][2]/2));
+
+const bar=document.getElementById("selectedBar");
+bar.classList.toggle("show",selectedTests.length>0);
+document.getElementById("selectedCount").textContent=`${selectedTests.length} Test${selectedTests.length===1?'':'s'} Selected`;
+document.getElementById("selectedTotal").textContent=`Estimated Total: ₹${total}`;
+
+const box=document.getElementById("selectedTests");
+if(selectedTests.length===0){
+box.innerHTML="No tests selected yet. Choose tests above.";
+return;
+}
+
+let html="";
+selectedTests.forEach((testIndex,position)=>{
+const [name,,reference]=tests[testIndex];
+const offer=Math.round(reference/2);
+html+=`<div class="selected-item"><span>☑️ ${name}<br><small>₹${offer}</small></span><button type="button" class="remove-btn" onclick="removeTest(${position})">Remove</button></div>`;
+});
+let totalText=selectedTests.reduce((sum,i)=>sum+Math.round(tests[i][2]/2),0);
+html+=`<div class="total-box">Selected Tests: ${selectedTests.length}<br>Estimated Offer Total: ₹${totalText}<br><small style="font-weight:500;color:#526b7b">Final price and availability will be confirmed by the provider.</small></div>`;
+box.innerHTML=html;
+}
+
+function sendWhatsApp(e){
+e.preventDefault();
+if(selectedTests.length===0){alert("Please select at least one test.");return;}
+
+const g=id=>document.getElementById(id).value.trim();
+let total=0,testLines="";
+
+selectedTests.forEach((i,n)=>{
+const [name,,reference]=tests[i];
+const offer=Math.round(reference/2);
+total+=offer;
+testLines+=`${n+1}. ${name} - Reference ₹${reference} / Offer ₹${offer}\n`;
+});
+
+const file=document.getElementById("prescription").files[0];
+const prescriptionName=file?file.name:"Not attached";
+
+const message=`PuneLab Connect - Home Collection Request
+
+Patient Name: ${g("name")}
+Mobile: ${g("mobile")}
+Area/City: ${g("area")}
+Preferred Date: ${g("date")||"Not specified"}
+Preferred Time: ${g("time")||"Not specified"}
+
+Selected Tests:
+${testLines}
+Estimated Offer Total: ₹${total}
+
+Prescription:
+${prescriptionName}
+
+Additional Information:
+${g("note")||"None"}
+
+Please confirm test availability and final price.`;
+
+window.open("https://wa.me/919595653184?text="+encodeURIComponent(message),"_blank");
+}
+
+setupFilters();
+renderTests();
+updateSelectedTests();
+</script>
+
+</body>
+</html>
