@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087f8c">
+<title>PuneLab Connect App</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4fafb;color:#12384a}
+.phone{max-width:430px;margin:auto;min-height:100vh;background:#fff;position:relative;padding-bottom:78px}
+.top{background:linear-gradient(135deg,#087f8c,#0b5f6b);color:white;padding:28px 20px 24px;border-radius:0 0 25px 25px}
+.brand{font-size:24px;font-weight:900}.tag{opacity:.9;margin-top:5px}
+.vision{margin-top:16px;background:#ffffff18;padding:12px;border-radius:13px;font-weight:800}
+.search{margin:-20px 18px 18px;background:white;padding:14px;border-radius:14px;box-shadow:0 8px 24px #12384a18;color:#758991}
+.quick{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;padding:0 15px}
+.q{background:#f2f9fa;border-radius:13px;padding:12px 5px;text-align:center;font-size:12px;font-weight:800}.q b{display:block;font-size:22px;margin-bottom:4px}
+.section{padding:20px 18px}.section h2{margin:0 0 12px;font-size:21px}
+.card{background:#fff;border:1px solid #dfedef;border-radius:16px;padding:16px;margin:10px 0;box-shadow:0 6px 18px #12384a08}
+.lab{display:flex;align-items:center;gap:12px}.labicon{width:45px;height:45px;border-radius:12px;background:#e2f6f4;display:grid;place-items:center;font-size:22px}
+.btn{border:0;border-radius:10px;padding:11px 14px;font-weight:900;cursor:pointer}.primary{background:#087f8c;color:#fff}.outline{background:#fff;color:#087f8c;border:1px solid #9bcfd3}
+.test{display:flex;align-items:center;gap:10px}.test input{width:20px;height:20px;accent-color:#087f8c}.test .name{flex:1;font-weight:800}.price{font-weight:900;color:#087f8c}
+.total{background:#e5f7f4;color:#087f8c;border-radius:12px;padding:13px;font-weight:900;margin-top:12px}
+.hidden{display:none}.page{display:none}.page.active{display:block}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;height:70px;background:#fff;border-top:1px solid #dcecef;display:grid;grid-template-columns:repeat(4,1fr);z-index:20}
+.bottom button{border:0;background:white;color:#627983;font-weight:800;font-size:11px}.bottom button b{display:block;font-size:21px;margin-bottom:2px}.bottom button.active{color:#087f8c}
+input,textarea{width:100%;padding:13px;border:1px solid #cfe0e4;border-radius:10px;margin:5px 0 12px;font:inherit}
+.report{display:flex;justify-content:space-between;align-items:center}.report small{color:#70858d}
+.float{display:flex;gap:9px}.call,.wa{flex:1;text-align:center;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900}.call{background:#087f8c}.wa{background:#25d366}
+</style>
+<style>
+.profileCard{margin:10px 0}.profileTop{display:flex;justify-content:space-between;gap:8px}.profileBadge,.profileParams{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:#e7f7f5;color:#087f8c}.profileParams{background:#f2f5f6;color:#607983}.profileCard h3{margin:10px 0 7px}.labNote,.mrp,.profileSmall{font-size:12px;color:#71858d}.offer{font-size:25px;font-weight:950;color:#087f8c;margin:3px 0}.offer span{font-size:10px;background:#e8f7ed;color:#16803b;padding:4px 6px;border-radius:5px}.networkMini{background:#eaf7f6;border:1px solid #cce8e6;border-radius:13px;padding:12px;margin:12px 0;color:#087f8c}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-check-compat.js"></script>
+
+</head>
+<body>
+<div class="phone">
+
+<div id="home" class="page active">
+<div class="top">
+<div class="brand">PuneLab <span style="color:#bdf4ee">Connect</span></div>
+<div class="tag" id="tagline">Diagnostic testing made simple.</div><select id="lang" onchange="setLang()" style="margin-top:10px;padding:8px 10px;border:0;border-radius:9px;font-weight:800"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select>
+<div class="vision">🇮🇳 Ek Vision — Pura India.</div>
+</div>
+<div class="search">🔎 Search tests, profiles or packages</div>
+<div class="quick">
+<div class="q" onclick="show('tests')"><b>🧪</b>Tests</div>
+<div class="q" onclick="show('labs')"><b>🤝</b>Labs</div>
+<div class="q" onclick="show('reports')"><b>📄</b>Reports</div>
+<div class="q" onclick="show('reminders')"><b>🔔</b>Reminders</div>
+</div>
+
+<div class="section">
+<h2>Multiple Lab Options</h2>
+<div class="card">
+<div class="lab"><div class="labicon">🧪</div><div><b>Connected Lab Network</b><br><small>Compare available options and suitable profiles.</small></div></div>
+<button class="btn primary" style="width:100%;margin-top:12px" onclick="show('labs')">Explore Lab Options →</button>
+</div>
+</div>
+
+<div class="section">
+<h2>Popular Tests</h2>
+<div class="card test"><span>☑️</span><span class="name">Complete Blood Count (CBC)</span><span class="price">₹300*</span></div>
+<div class="card test"><span>☑️</span><span class="name">Thyroid Profile</span><span class="price">₹350*</span></div>
+<div class="card test"><span>☑️</span><span class="name">Vitamin B12</span><span class="price">₹400*</span></div>
+<button class="btn outline" style="width:100%" onclick="show('tests')">View All Tests</button>
+<p style="font-size:11px;color:#7b8d94">*Illustrative pricing. Final availability and price confirmed before booking.</p>
+</div>
+
+<div class="section">
+<h2>Need Help?</h2>
+<div class="float">
+<a class="call" href="tel:+919595653184">📞 Call</a>
+<a class="wa" href="https://wa.me/919595653184">💬 WhatsApp</a>
+</div>
+</div>
+</div>
+
+<div id="profiles" class="page">
+<div class="section">
+<h2>⭐ Featured Health Profiles</h2><input id="profileSearch" placeholder="🔎 Search profile..." oninput="filterProfiles()" style="width:100%;padding:13px;border:1px solid #cfe0e4;border-radius:10px;font-size:16px;margin:8px 0 12px">
+<p style="color:#657b84">Popular profiles with PuneLab Connect offer pricing.</p>
+<div class="networkMini">🤝 <b>Diagnostic Lab Network</b><br><small>Multiple diagnostic laboratories and suitable profiles, subject to availability.</small></div>
+<div id="featuredProfiles"></div>
+<p style="font-size:11px;color:#7b8d94">MRP is shown with a strike-through. Offer prices are PuneLab Connect promotional prices. Final availability is confirmed before booking.</p>
+</div></div>
+
+
+<div id="profileDetail" class="page">
+<div class="section">
+<button class="btn outline" onclick="show('profiles')">← Back to Profiles</button>
+<div id="profileDetailBox" class="card" style="margin-top:12px"></div>
+</div>
+</div>
+<div id="tests" class="page">
+<div class="section">
+<h2>🧪 All Tests & Profiles</h2>
+<p style="color:#657b84">Search by test name or category. If a test is not listed, request a custom profile and we can check our connected labs.</p>
+<input id="testSearch" placeholder="🔎 Search CBC, urine, thyroid, hormone..." oninput="filterTests()" style="width:100%;padding:13px;border:1px solid #cfe0e4;border-radius:10px;font-size:16px">
+<select id="testCategory" onchange="filterTests()" style="width:100%;padding:13px;border:1px solid #cfe0e4;border-radius:10px;font-size:16px;margin:10px 0"></select>
+<div id="catalog"></div>
+<div class="total">Selected: <span id="count">0</span> · Price: <span id="total">To confirm</span></div>
+<button class="btn primary" style="width:100%;margin-top:12px" onclick="show('booking')">Continue to Booking →</button>
+<button class="btn outline" style="width:100%;margin-top:8px" onclick="show('labs')">Can't Find Your Test? Request Any Test / Custom Profile</button>
+<p style="font-size:11px;color:#7b8d94">Live lab availability and final pricing will be confirmed before booking.</p>
+</div>
+</div>
+
+<div id="labs" class="page">
+<div class="section"><h2>🤝 Multiple Lab Network</h2>
+<p style="color:#657b84">We can check our connected laboratories for the test you need—even if it is not listed—and help create or customise a suitable profile according to your requirement and budget.</p>
+<div class="card"><b>🧪 Lab Option 1</b><p>Available tests · Profile support</p></div>
+<div class="card"><b>🧪 Lab Option 2</b><p>Available tests · Package support</p></div>
+<div class="card"><b>🧪 Lab Option 3</b><p>Available tests · Custom profile enquiry</p></div>
+<button class="btn primary" style="width:100%" onclick="show('booking')">Request a Custom Profile</button>
+</div>
+</div>
+
+<div id="booking" class="page">
+<div class="section"><h2>📅 Book Home Collection</h2>
+<div class="card" style="background:#f5fbfc">
+<b>📌 Booking Status</b>
+<div style="display:flex;justify-content:space-between;margin-top:12px;font-size:11px">
+<span>Booked</span><span>Confirmed</span><span>Sample</span><span>Report</span>
+</div>
+<div style="height:7px;background:#dcecef;border-radius:9px;margin-top:8px">
+<div style="height:7px;width:25%;background:#087f8c;border-radius:9px"></div>
+</div>
+</div>
+
+<div class="card">
+<label>Patient Name</label><input placeholder="Full name">
+<label>Mobile</label><input placeholder="Mobile number">
+<label>Area / City</label><input placeholder="Area / City">
+<label>Preferred Date</label><input type="date">
+<label>Prescription (optional)</label><input type="file" accept="image/*,.pdf">
+<label>Additional note</label><textarea placeholder="Tell us what you need"></textarea>
+<button class="btn primary" style="width:100%" onclick="submitBooking()">🔔 Submit Booking</button>
+</div></div>
+</div>
+
+
+<div id="mybookings" class="page">
+<div class="section">
+<h2>📋 My Bookings</h2>
+<div class="card">
+<div style="display:flex;justify-content:space-between;gap:10px"><b>Booking #PLC001</b><span style="background:#fff3cd;color:#856404;padding:5px 8px;border-radius:8px;font-size:11px;font-weight:800">Pending</span></div>
+<p style="margin-bottom:5px">CBC + Vitamin D</p><small>Home Collection · Date/slot to be confirmed</small>
+</div>
+<div class="card">
+<div style="display:flex;justify-content:space-between;gap:10px"><b>Booking #PLC0007</b><span style="background:#e7f7f5;color:#087f8c;padding:5px 8px;border-radius:8px;font-size:11px;font-weight:800">Report Ready</span></div>
+<p style="margin-bottom:5px">Thyroid Profile</p><small>Report available in My Reports</small>
+<button class="btn outline" style="width:100%;margin-top:10px" onclick="show('reports')">Open Report</button>
+</div>
+</div>
+</div>
+
+<div id="reports" class="page">
+<div class="section"><h2>📄 My Reports</h2>
+<div class="card report"><div><b>CBC Report</b><br><small>Sample: 15 Aug 2026</small></div><button class="btn outline" onclick="alert('Demo PDF download')">Download</button></div>
+<div class="card report"><div><b>Thyroid Profile</b><br><small>Sample: 02 Aug 2026</small></div><button class="btn outline" onclick="alert('Demo PDF download')">Download</button></div>
+<p style="color:#70858d;font-size:13px">Reports will be securely stored against the customer's account in the production app.</p>
+</div>
+</div>
+
+<div id="reminders" class="page">
+<div class="section"><h2>🔔 Test Reminders</h2>
+<div class="card"><b>Vitamin D Test</b><p>Reminder: 30 Aug 2026</p><button class="btn primary" onclick="alert('Reminder demo saved')">Set Reminder</button></div>
+<div class="card"><b>Health Checkup</b><p>Choose a date for your next reminder.</p><input type="date"><button class="btn primary">Save Reminder</button></div>
+</div>
+</div>
+
+
+<div class="section">
+<h2>🚀 Coming Next</h2>
+<div class="card"><b>🔐 Firebase OTP Login</b><p>Customer phone login is wired for Firebase Authentication.</p></div>
+<div class="card"><b>🔔 Firebase Bookings</b><p>Booking requests are saved in Firestore for the connected customer account.</p></div>
+<div class="card"><b>📍 Collection Availability</b><p>Pincode-based service availability before booking.</p></div>
+<div class="card"><b>🌐 Marathi • हिन्दी • English</b><p>Customers can choose their preferred language.</p></div>
+</div>
+
+
+
+<div id="login" class="page">
+<div class="section">
+<h2>🔐 Customer Login</h2>
+<div class="card">
+<p style="color:#657b84">Login with your mobile number to securely access bookings and reports.</p>
+<label>Mobile Number</label>
+<input id="loginMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit mobile number">
+<button class="btn primary" style="width:100%" onclick="sendDemoOtp()">Send OTP</button>
+<div id="otpBox" class="hidden" style="margin-top:12px">
+<label>OTP</label>
+<input id="loginOtp" inputmode="numeric" maxlength="6" placeholder="Enter OTP">
+<button class="btn primary" style="width:100%" onclick="verifyDemoOtp()">Verify & Login</button>
+</div>
+<p id="loginMsg" style="font-size:12px;color:#70858d"></p><p style="font-size:11px;color:#7b8d94;margin-top:10px">Firebase setup: paste the Web App API key and App ID from Project Settings before deployment.</p>
+</div>
+<div class="card">
+<b>🔒 Privacy</b>
+<p style="font-size:13px;color:#657b84">Your reports and booking history will be accessible only after authenticated login in the production app.</p>
+</div>
+</div>
+</div>
+
+<div id="admin" class="page">
+<div class="section">
+<h2>👨‍💼 Owner / Admin Dashboard</h2>
+<div class="card" style="background:#eaf7f6">
+<b>🔔 New Booking Alerts</b>
+<p style="margin:6px 0;color:#526b73">Production version will send real push notifications when a customer submits a booking.</p>
+</div>
+<div class="card">
+<h3>Today's Booking</h3>
+<div style="display:grid;gap:8px">
+<div><b>Demo Booking #PLC001</b><br><small>Customer: Demo Customer · Home Collection</small></div>
+<div><small>Tests: CBC + Vitamin D</small></div>
+<div><small>Area: Customer location · Preferred slot: 10:00 AM</small></div>
+<span style="display:inline-block;background:#fff3cd;color:#856404;padding:6px 9px;border-radius:8px;font-weight:800;width:max-content">Pending Confirmation</span>
+</div>
+</div>
+<div class="card">
+<h3>Booking Actions</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<button class="btn primary" onclick="alert('Demo: booking accepted. Production version will notify customer.')">Accept</button>
+<button class="btn outline" onclick="alert('Demo: booking status updated.')">Update Status</button>
+</div>
+</div>
+<div class="card">
+<h3>📄 Reports</h3>
+<p>Upload a customer's report after authentication and attach it to their account.</p>
+<button class="btn primary" style="width:100%" onclick="alert('Production version will connect this to secure report storage.')">Upload Report</button>
+</div>
+</div>
+</div>
+
+<div id="profile" class="page">
+<div class="section"><h2>👤 Profile</h2>
+<div class="card"><b>NAZIM NAZIR SHAIKH</b><p>PuneLab Connect — Founder & Owner</p><p>📞 9595653184<br>✉️ shaikh.nazim1996@gmail.com<br>📍 PuneLab Connect, Kiwale, Pune, Maharashtra</p></div>
+<div class="float"><a class="call" href="tel:+919595653184">📞 Call</a><a class="wa" href="https://wa.me/919595653184">💬 WhatsApp</a></div>
+</div>
+</div>
+
+<div class="bottom">
+<button class="active" onclick="show('home',this)"><b>⌂</b>Home</button>
+<button onclick="show('tests',this)"><b>🧪</b>Tests</button><button onclick="show('profiles',this)"><b>⭐</b>Profiles</button>
+<button onclick="show('reports',this)"><b>📄</b>Reports</button>
+<button onclick="show('profile',this)"><b>👤</b>Profile</button><button onclick="show('mybookings',this)"><b>📋</b>Bookings</button><button onclick="show('login',this)"><b>🔐</b>Login</button><button onclick="show('admin',this)"><b>🔔</b>Admin</button>
+</div>
+</div>
+
+<script>
+function show(id,btn){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+if(btn){document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+window.scrollTo(0,0);
+}
+
+const featuredProfiles=[["C Pro", "71 Parameters", "General", 2999, 1250], ["C Plus Profile with UTSH", "97 Parameters", "General", 3265, 1500], ["Women Basic Profile with UTSH", "73 Parameters", "Women", 2055, 1999], ["USTSH + LH + FSH + PRL", "4 Parameters", "Women", 1670, 1250], ["Aarogyam Camp Profile 3", "78 Parameters", "General", 5280, 1999], ["Aarogyam Purush Profile", "108 Parameters", "Men", 5500, 3000], ["Stree Profile", "111 Parameters", "Women", 5500, 3000]];
+
+function filterProfiles(){
+ const q=(document.getElementById("profileSearch")?.value||"").toLowerCase().trim();
+ const box=document.getElementById("featuredProfiles"); if(!box)return;
+ const matches=featuredProfiles.map((p,i)=>[p,i]).filter(([p])=>p[0].toLowerCase().includes(q)||p[2].toLowerCase().includes(q));
+ box.innerHTML=matches.map(([p,i])=>`<div class="card profileCard">
+ <div class="profileTop"><span class="profileBadge">${p[2]}</span><span class="profileParams">${p[1]}</span></div>
+ <h3>${p[0]}</h3><div class="labNote">🧪 Diagnostic Lab Network</div>
+ <div class="mrp">MRP <s>₹${p[3].toLocaleString("en-IN")}</s></div>
+ <div class="offer">₹${p[4].toLocaleString("en-IN")} <span>OFFER PRICE</span></div>
+ <button class="btn outline" style="width:100%;margin-bottom:7px" onclick="viewProfile(${i})">View Included Tests</button>
+ <button class="btn primary" style="width:100%" onclick="selectProfile(${i})">Add Profile</button>
+ </div>`).join("") || `<div class="card">No matching profile found.</div>`;
+}
+
+function renderProfiles(){
+ filterProfiles();
+ box.innerHTML=featuredProfiles.map((p,i)=>`<div class="card profileCard">
+ <div class="profileTop"><span class="profileBadge">${p[2]}</span><span class="profileParams">${p[1]}</span></div>
+ <h3>${p[0]}</h3><div class="labNote">🧪 Diagnostic Lab Network</div>
+ <div class="mrp">MRP <s>₹${p[3].toLocaleString("en-IN")}</s></div>
+ <div class="offer">₹${p[4].toLocaleString("en-IN")} <span>OFFER PRICE</span></div>
+ <p class="profileSmall">Final availability, inclusions and processing laboratory are confirmed before booking.</p>
+ <button class="btn outline" style="width:100%;margin-bottom:7px" onclick="viewProfile(${i})">View Included Tests</button><button class="btn primary" style="width:100%" onclick="selectProfile(${i})">Add Profile</button>
+ </div>`).join("");
+}
+
+
+
+
+const profileDetails={"C Pro": [["Thyroid Advanced (3)", ["TSH - Ultrasensitive", "Total Thyroxine (T4)", "Total Triiodothyronine (T3)"]], ["Lipid Advanced (10)", ["Total Cholesterol", "Triglycerides", "HDL Cholesterol - Direct", "HDL / LDL Ratio", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "Trig / HDL Ratio", "VLDL Cholesterol"]], ["Liver Extended (12)", ["Bilirubin - Total", "SGOT / SGPT Ratio", "Aspartate Aminotransferase (SGOT)", "Alanine Transaminase (SGPT)", "Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin (Indirect)", "Serum Albumin / Globulin Ratio", "Protein - Total", "Albumin - Serum", "Serum Globulin", "Gamma Glutamyl Transferase (GGT)"]], ["Kidney Advanced (7)", ["BUN / Serum Creatinine Ratio", "Blood Urea Nitrogen (BUN)", "Creatinine - Serum", "Urea / Serum Creatinine Ratio", "Urea (Calculated)", "Calcium", "Uric Acid"]], ["Iron Deficiency Profile (4)", ["Iron", "% Transferrin Saturation", "Total Iron Binding Capacity (TIBC)", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Diabetes Profile (2)", ["HbA1c", "Average Blood Glucose (ABG)"]], ["Vitamins Profile (2)", ["25-OH Vitamin D (Total)", "Vitamin B-12"]], ["Electrolytes (2)", ["Sodium", "Chloride"]], ["CBC (28)", ["Complete Blood Count — 28 parameters"]], ["High Sensitivity C-Reactive Protein", ["hs-CRP"]]], "C Plus Profile with UTSH": [["Thyroid Profile (3)", ["Ultrasensitive TSH (UTSH)", "Total Thyroxine (T4)", "Total Triiodothyronine (T3)"]], ["Lipid Profile (10)", ["Total Cholesterol", "HDL Cholesterol - Direct", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "Triglycerides", "VLDL Cholesterol", "HDL / LDL Ratio", "TRIG / HDL Ratio"]], ["Liver Profile (12)", ["Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin - Total", "Bilirubin - Indirect", "Gamma Glutamyl Transferase (GGT)", "Protein - Total", "Serum Albumin", "Serum Globulin", "SGOT (AST)", "SGPT (ALT)", "Serum Albumin / Globulin Ratio", "SGOT / SGPT Ratio"]], ["Kidney Profile (7)", ["BUN / Creatinine Ratio", "Blood Urea Nitrogen (BUN)", "Calcium", "Serum Creatinine", "Uric Acid", "Urea (Calculated)", "Urea / Serum Creatinine Ratio"]], ["Iron Deficiency Profile (4)", ["Total Iron Binding Capacity (TIBC)", "% Transferrin Saturation", "Iron", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Serum Electrolytes (2)", ["Sodium", "Chloride"]], ["Complete Urine Analysis (24)", ["24-parameter urine analysis"]], ["Diabetes Profile (2)", ["HbA1c", "Average Blood Glucose (ABG)"]], ["Vitamins Profile (2)", ["Vitamin B-12", "25-OH Vitamin D (Total)"]], ["Testosterone", ["Testosterone"]], ["hs-CRP", ["High Sensitivity C-Reactive Protein"]]], "Women Basic Profile with UTSH": [["Thyroid Profile (3)", ["Total Thyroxine (T4)", "Total Triiodothyronine (T3)", "Ultrasensitive TSH (UTSH)"]], ["Lipid Profile (10)", ["Total Cholesterol", "HDL Cholesterol - Direct", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "Triglycerides", "VLDL Cholesterol", "HDL / LDL Ratio", "TRIG / HDL Ratio"]], ["Liver Profile (12)", ["Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin - Total", "Bilirubin - Indirect", "Gamma Glutamyl Transferase (GGT)", "Protein - Total", "Serum Albumin", "Serum Globulin", "SGOT (AST)", "SGPT (ALT)", "Serum Albumin / Globulin Ratio", "SGOT / SGPT Ratio"]], ["Kidney Profile (7)", ["BUN / Serum Creatinine Ratio", "Blood Urea Nitrogen", "Calcium", "Serum Creatinine", "Uric Acid", "Urea (Calculated)", "Urea / SR Creatinine Ratio"]], ["Iron Deficiency Profile (4)", ["Total Iron Binding Capacity (TIBC)", "% Transferrin Saturation", "Iron", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Diabetes Profile (2)", ["HbA1c", "Average Blood Glucose (ABG)"]], ["Vitamins Profile (3)", ["Vitamin B-12", "25-OH Vitamin D (Total)", "Folate"]], ["Infertility Profile (3)", ["Follicle Stimulating Hormone (FSH)", "Luteinising Hormone (LH)", "Prolactin (PRL)"]], ["Estradiol / Oestrogen (E2)", ["Estradiol / Oestrogen (E2)"]], ["CBC (28)", ["Complete Blood Count — 28 parameters"]]], "USTSH + LH + FSH + PRL": [["Profile Includes (4 Parameters)", ["TSH - Ultrasensitive (UTSH)", "Luteinising Hormone (LH)", "Follicle Stimulating Hormone (FSH)", "Prolactin (PRL)"]]], "Aarogyam Camp Profile 3": [["Lipid Advanced (10)", ["Total Cholesterol", "HDL Cholesterol - Direct", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "Triglycerides", "VLDL Cholesterol", "HDL / LDL Ratio", "TRIG / HDL Ratio"]], ["Liver Extended (12)", ["Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin - Total", "Bilirubin - Indirect", "Gamma Glutamyl Transferase", "Protein - Total", "Serum Albumin", "Serum Globulin", "SGOT (AST)", "SGPT (ALT)", "Serum Albumin / Globulin Ratio", "SGOT / SGPT Ratio"]], ["Kidney Advanced (7)", ["BUN / Creatinine Ratio", "Blood Urea Nitrogen (BUN)", "Calcium", "Serum Creatinine", "Uric Acid", "Urea (Calculated)", "Urea / SR Creatinine Ratio"]], ["Thyroid Advanced (3)", ["Total Triiodothyronine (T3)", "Total Thyroxine (T4)", "Ultrasensitive TSH (UTSH)"]], ["Diabetes Profile (2)", ["Average Blood Glucose (ABG)", "HbA1c"]], ["Vitamin Profile (2)", ["Vitamin B-12", "25-OH Vitamin D (Total)"]], ["Cardiac Risk Markers (5)", ["Lipoprotein (a)", "Apolipoprotein - A1", "Apolipoprotein - B", "High Sensitivity C-Reactive Protein", "ApoB / ApoA1 Ratio"]], ["Iron Deficiency Profile (4)", ["Total Iron Binding Capacity (TIBC)", "% Transferrin Saturation", "Iron", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Serum Electrolytes (2)", ["Chloride", "Sodium"]], ["Rheumatoid Factor (RF)", ["Rheumatoid Factor (RF)"]], ["Erythrocyte Sedimentation Rate (ESR)", ["ESR"]], ["C-Reactive Protein (CRP)", ["CRP"]], ["CBC (28)", ["Complete Blood Count — 28 parameters"]]], "Aarogyam Purush Profile": [["Thyroid Advanced (3)", ["TSH - Ultrasensitive", "Free Triiodothyronine (FT3)", "Free Thyroxine (FT4)"]], ["Lipid Advanced (10)", ["Total Cholesterol", "Triglycerides", "HDL Cholesterol - Direct", "HDL / LDL Ratio", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "ApoB / ApoA1 Ratio", "VLDL Cholesterol"]], ["Vitamins Profile (3)", ["25-OH Vitamin D (Total)", "Vitamin B-12", "Folate"]], ["Cardiac Risk Markers (6)", ["Lipoprotein (a) [Lp(a)]", "Apo B / Apo A1 Ratio", "Apolipoprotein - A1", "Apolipoprotein - B", "Homocysteine", "High Sensitivity C-Reactive Protein (hs-CRP)"]], ["Cancer Profile (2)", ["CA-125", "Carcino Embryonic Antigen (CEA)"]], ["Diabetes Profile (2)", ["HbA1c", "Average Blood Glucose (ABG)"]], ["Liver Extended (12)", ["Bilirubin - Total", "SGOT / SGPT Ratio", "Aspartate Aminotransferase (SGOT)", "Alanine Transaminase (SGPT)", "Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin (Indirect)", "Serum Albumin / Globulin Ratio", "Protein - Total", "Albumin - Serum", "Serum Globulin", "Gamma Glutamyl Transferase (GGT)"]], ["Kidney Advanced (7)", ["BUN / Creatinine Ratio", "Blood Urea Nitrogen (BUN)", "Calcium", "Serum Creatinine", "Uric Acid", "Urea (Calculated)", "Urea / SR Creatinine Ratio"]], ["Iron Deficiency Profile (4)", ["Total Iron Binding Capacity (TIBC)", "% Transferrin Saturation", "Iron", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Serum Electrolytes (2)", ["Chloride", "Sodium"]], ["Magnesium", ["Magnesium"]], ["Phosphorous", ["Phosphorous"]], ["ANA", ["Anti Nuclear Antibodies (ANA)"]], ["Anti-CCP", ["Anti CCP (ACCP)"]], ["Testosterone", ["Testosterone"]], ["CBC (28)", ["Complete Blood Count — 28 parameters"]], ["Complete Urine Analysis (24)", ["24-parameter urine analysis"]]], "Stree Profile": [["Thyroid Advanced (3)", ["TSH - Ultrasensitive", "Free Triiodothyronine (FT3)", "Free Thyroxine (FT4)"]], ["Lipid Advanced (10)", ["Total Cholesterol", "Triglycerides", "HDL Cholesterol - Direct", "HDL / LDL Ratio", "LDL Cholesterol - Direct", "LDL / HDL Ratio", "Non-HDL Cholesterol", "TC / HDL Cholesterol Ratio", "ApoB / ApoA1 Ratio", "VLDL Cholesterol"]], ["Liver Extended (12)", ["Bilirubin - Total", "SGOT / SGPT Ratio", "Aspartate Aminotransferase (SGOT)", "Alanine Transaminase (SGPT)", "Alkaline Phosphatase", "Bilirubin - Direct", "Bilirubin (Indirect)", "Serum Albumin / Globulin Ratio", "Protein - Total", "Albumin - Serum", "Serum Globulin", "Gamma Glutamyl Transferase (GGT)"]], ["Kidney Advanced (7)", ["BUN / Creatinine Ratio", "Blood Urea Nitrogen (BUN)", "Calcium", "Serum Creatinine", "Uric Acid", "Urea (Calculated)", "Urea / SR Creatinine Ratio"]], ["Iron Deficiency Profile (4)", ["Total Iron Binding Capacity (TIBC)", "% Transferrin Saturation", "Iron", "Unsaturated Iron Binding Capacity (UIBC)"]], ["Serum Electrolytes (2)", ["Chloride", "Sodium"]], ["Diabetes Profile (2)", ["HbA1c", "Average Blood Glucose (ABG)"]], ["Vitamins Profile (3)", ["Vitamin B-12", "25-OH Vitamin D (Total)", "Folate"]], ["Cardiac Risk Markers (6)", ["Lipoprotein (a) [Lp(a)]", "Apo B / Apo A1 Ratio", "Apolipoprotein - A1", "Apolipoprotein - B", "Homocysteine", "High Sensitivity C-Reactive Protein (hs-CRP)"]], ["Cancer Profile (2)", ["CA-125", "Carcino Embryonic Antigen (CEA)"]], ["Infertility Profile (3)", ["Follicle Stimulating Hormone (FSH)", "Luteinising Hormone (LH)", "Prolactin (PRL)"]], ["Magnesium", ["Magnesium"]], ["Phosphorous", ["Phosphorous"]], ["ANA", ["Anti Nuclear Antibodies (ANA)"]], ["Anti-CCP", ["Anti CCP (ACCP)"]], ["Estradiol / Oestrogen (E2)", ["Estradiol / Oestrogen (E2)"]], ["CBC (28)", ["Complete Blood Count — 28 parameters"]], ["Complete Urine Analysis (24)", ["24-parameter urine analysis"]]]};
+function viewProfile(i){
+ const p=featuredProfiles[i], groups=profileDetails[p[0]]||[];
+ document.getElementById("profileDetailBox").innerHTML=
+ `<h2>${p[0]}</h2><p><b>${p[1]}</b> · ${p[2]}</p>
+ <div class="offer">₹${p[4].toLocaleString("en-IN")} <span>OFFER PRICE</span></div>
+ <p class="mrp">MRP <s>₹${p[3].toLocaleString("en-IN")}</s></p>
+ <h3>🧪 Tests Included</h3>
+ ${groups.map(g=>`<div class="card"><b>${g[0]}</b><ul>${g[1].map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")}
+ <button class="btn primary" style="width:100%" onclick="selectProfile(${i})">Add This Profile</button>`;
+ show("profileDetail");
+}
+
+function selectProfile(i){alert(featuredProfiles[i][0]+" added to your booking request. Final availability will be confirmed.");}
+const testCatalog=[
+["CBC / Hemogram","Blood"],["Hemoglobin","Blood"],["ESR","Blood"],["Peripheral Blood Smear","Blood"],["Reticulocyte Count","Blood"],["Platelet Count","Blood"],["RBC Count","Blood"],["WBC Count","Blood"],["Blood Group & Rh","Blood"],["PT-INR","Blood"],["aPTT","Blood"],["D-Dimer","Blood"],
+["Fasting Blood Sugar","Diabetes"],["Random Blood Sugar","Diabetes"],["Post Meal Blood Sugar","Diabetes"],["HbA1c","Diabetes"],["Glucose Tolerance Test (GTT)","Diabetes"],["Insulin Fasting","Diabetes"],["C-Peptide","Diabetes"],
+["Lipid Profile","Heart"],["Total Cholesterol","Heart"],["HDL Cholesterol","Heart"],["LDL Cholesterol","Heart"],["Triglycerides","Heart"],["Apolipoprotein A1","Heart"],["Apolipoprotein B","Heart"],["hs-CRP","Heart"],["Troponin I","Heart"],["CK-MB","Heart"],
+["Liver Function Test (LFT)","Liver"],["Bilirubin Total","Liver"],["Bilirubin Direct","Liver"],["AST / SGOT","Liver"],["ALT / SGPT","Liver"],["Alkaline Phosphatase","Liver"],["GGT","Liver"],["Albumin","Liver"],["Total Protein","Liver"],["Ammonia","Liver"],
+["Kidney Function Test (KFT/RFT)","Kidney"],["Creatinine","Kidney"],["Urea","Kidney"],["BUN","Kidney"],["eGFR","Kidney"],["Uric Acid","Kidney"],["Sodium","Kidney"],["Potassium","Kidney"],["Chloride","Kidney"],["Calcium","Kidney"],["Phosphorus","Kidney"],["Magnesium","Kidney"],
+["Thyroid Profile (T3/T4/TSH)","Thyroid"],["TSH","Thyroid"],["T3","Thyroid"],["T4","Thyroid"],["Free T3","Thyroid"],["Free T4","Thyroid"],["Anti-TPO Antibody","Thyroid"],["Anti-Thyroglobulin Antibody","Thyroid"],
+["Vitamin D (25-OH)","Vitamins"],["Vitamin B12","Vitamins"],["Folate / Folic Acid","Vitamins"],["Vitamin A","Vitamins"],["Vitamin C","Vitamins"],["Vitamin E","Vitamins"],
+["Iron Profile","Iron"],["Serum Iron","Iron"],["Ferritin","Iron"],["TIBC","Iron"],["Transferrin","Iron"],
+["Urine Routine & Microscopy","Urine"],["Urine Culture & Sensitivity","Urine"],["Urine Pregnancy Test","Urine"],["Urine ACR","Urine"],["Urine PCR","Urine"],["24 Hour Urine Protein","Urine"],["Urine Creatinine","Urine"],["Urine Calcium","Urine"],
+["Stool Routine Examination","Stool"],["Stool Occult Blood","Stool"],["Stool Culture","Stool"],["Semen Analysis","Clinical"],["Sputum Examination","Clinical"],
+["CRP","Infection"],["Procalcitonin","Infection"],["Dengue NS1","Infection"],["Dengue IgG","Infection"],["Dengue IgM","Infection"],["Malaria Antigen","Infection"],["HBsAg","Infection"],["Anti-HCV","Infection"],["HIV 1 & 2 Screening","Infection"],["Widal Test","Infection"],["Hepatitis A IgM","Infection"],["Hepatitis E IgM","Infection"],["H. pylori IgG","Infection"],
+["ANA","Autoimmune"],["Anti-dsDNA","Autoimmune"],["Rheumatoid Factor","Autoimmune"],["Anti-CCP","Autoimmune"],["C3 Complement","Autoimmune"],["C4 Complement","Autoimmune"],["IgG","Autoimmune"],["IgA","Autoimmune"],["IgM","Autoimmune"],["IgE Total","Autoimmune"],
+["FSH","Hormones"],["LH","Hormones"],["Prolactin","Hormones"],["Testosterone Total","Hormones"],["Free Testosterone","Hormones"],["Estradiol (E2)","Hormones"],["Progesterone","Hormones"],["Cortisol","Hormones"],["AMH","Hormones"],["DHEA-S","Hormones"],["SHBG","Hormones"],["PTH / iPTH","Hormones"],["Growth Hormone","Hormones"],
+["PSA Total","Special"],["PSA Free","Special"],["CEA","Cancer Markers"],["AFP","Cancer Markers"],["CA-125","Cancer Markers"],["CA 19-9","Cancer Markers"],["CA 15-3","Cancer Markers"],
+["Amylase","Enzymes"],["Lipase","Enzymes"],["LDH","Enzymes"],["CK / CPK","Enzymes"],["Lactate","Enzymes"],
+["Electrolytes Panel","Electrolytes"],["Serum Osmolality","Electrolytes"],["Urine Osmolality","Electrolytes"],
+["Full Body Health Checkup","Packages"],["Diabetes Health Package","Packages"],["Thyroid Health Package","Packages"],["Heart Health Package","Packages"],["Vitamin Health Package","Packages"],["Senior Citizen Health Package","Packages"]
+];
+
+let selectedCatalog=[];
+function setupCatalog(){
+ const cats=["All Categories",...new Set(testCatalog.map(x=>x[1]))];
+ document.getElementById("testCategory").innerHTML=cats.map(c=>`<option>${c}</option>`).join("");
+ filterTests();
+}
+function filterTests(){
+ const q=document.getElementById("testSearch").value.toLowerCase().trim();
+ const cat=document.getElementById("testCategory").value;
+ const box=document.getElementById("catalog");
+ const matches=testCatalog.map((t,i)=>[t,i]).filter(([t])=>(cat==="All Categories"||t[1]===cat)&&t[0].toLowerCase().includes(q));
+ box.innerHTML=matches.map(([t,i])=>{
+   const checked=selectedCatalog.includes(i);
+   return `<div class="card test"><input type="checkbox" ${checked?"checked":""} onchange="toggleCatalog(${i})"><span class="name">${t[0]}<br><small style="color:#78909b">${t[1]}</small></span><span class="price">Check</span></div>`;
+ }).join("") || `<div class="card">Test not listed. Use <b>Request Any Test / Custom Profile</b> to ask us to check connected labs.</div>`;
+ updateCatalogTotal();
+}
+function toggleCatalog(i){
+ const p=selectedCatalog.indexOf(i);
+ if(p===-1) selectedCatalog.push(i); else selectedCatalog.splice(p,1);
+ filterTests();
+}
+function updateCatalogTotal(){
+ document.getElementById("count").textContent=selectedCatalog.length;
+ document.getElementById("total").textContent="To confirm";
+}
+setupCatalog(); renderProfiles();
+
+
+const langText={
+en:{tests:"🧪 All Tests & Profiles",labs:"🤝 Multiple Lab Network",booking:"📅 Book Home Collection",reports:"📄 My Reports",reminders:"🔔 Test Reminders",profile:"👤 Profile",home:"⌂ Home",vision:"🇮🇳 Ek Vision — Pura India.",tag:"Diagnostic testing made simple."},
+hi:{tests:"🧪 सभी टेस्ट और प्रोफाइल",labs:"🤝 मल्टी-लैब नेटवर्क",booking:"📅 होम सैंपल कलेक्शन बुक करें",reports:"📄 मेरी रिपोर्ट्स",reminders:"🔔 टेस्ट रिमाइंडर",profile:"👤 प्रोफाइल",home:"⌂ होम",vision:"🇮🇳 एक विज़न — पूरा भारत।",tag:"डायग्नोस्टिक टेस्टिंग को आसान बनाएं।"},
+mr:{tests:"🧪 सर्व टेस्ट आणि प्रोफाइल",labs:"🤝 मल्टी-लॅब नेटवर्क",booking:"📅 होम सॅम्पल कलेक्शन बुक करा",reports:"📄 माझे रिपोर्ट्स",reminders:"🔔 टेस्ट रिमाइंडर्स",profile:"👤 प्रोफाइल",home:"⌂ होम",vision:"🇮🇳 एक व्हिजन — संपूर्ण भारत.",tag:"डायग्नोस्टिक टेस्टिंग आता सोपे."}
+};
+function setLang(){
+ const l=document.getElementById("lang").value,t=langText[l];
+ document.getElementById("tagline").textContent=t.tag;
+ document.querySelector(".vision").textContent=t.vision;
+ const heads=document.querySelectorAll(".section h2");
+ if(heads[0]) heads[0].textContent=t.tests;
+ const pages=document.querySelectorAll(".bottom button");
+ if(pages.length>=4){pages[0].innerHTML="<b>⌂</b>"+t.home;pages[1].innerHTML="<b>🧪</b>"+(l==="mr"?"टेस्ट":l==="hi"?"टेस्ट":"Tests");pages[2].innerHTML="<b>📄</b>"+t.reports;pages[3].innerHTML="<b>👤</b>"+t.profile;}
+}
+
+function calc(){updateCatalogTotal();}
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEKpH8mVQz7r8Z7hQApatWJaIwDHpI1co",
+  authDomain: "punelab-connect.firebaseapp.com",
+  projectId: "punelab-connect",
+  storageBucket: "punelab-connect.firebasestorage.app",
+  messagingSenderId: "193102643346",
+  appId: "1:193102643346:web:1f0266eddc47b3ef78264b",
+  measurementId: "G-1CBF191218"
+};
+
+let firebaseReady = false;
+let confirmationResult = null;
+
+// Firebase App Check (reCAPTCHA v3)
+// IMPORTANT: replace the value below with the PUBLIC reCAPTCHA v3 SITE KEY
+// created for the same domain/app that was registered in Firebase App Check.
+const RECAPTCHA_SITE_KEY = "6LeIWWwtAAAAAPvZQOOOz9eq5N47gmpzLRZ2ie8Tf";
+
+try {
+  firebase.initializeApp(firebaseConfig);
+
+  // App Check must be initialized before Firestore/Auth are used.
+  if (RECAPTCHA_SITE_KEY && !RECAPTCHA_SITE_KEY.startsWith("PASTE_")) {
+    window.appCheck = firebase.appCheck();
+    window.appCheck.activate(RECAPTCHA_SITE_KEY, true);
+  } else {
+    console.warn("App Check site key is not set yet. Firebase App Check will remain inactive until the public site key is added.");
+  }
+
+  window.db = firebase.firestore();
+  window.auth = firebase.auth();
+  firebaseReady = true;
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier("otpBox", {
+    size: "invisible"
+  });
+} catch (e) {
+  console.warn("Firebase setup pending:", e);
+}
+
+function sendDemoOtp(){
+  const mobile = document.getElementById("loginMobile").value.replace(/\D/g,"");
+  const msg = document.getElementById("loginMsg");
+  if(mobile.length !== 10){
+    msg.textContent = "Please enter a valid 10-digit mobile number.";
+    return;
+  }
+  if(!firebaseReady || firebaseConfig.apiKey.startsWith("PASTE_")){
+    msg.textContent = "Firebase setup pending: add the Web App config from Firebase Project Settings.";
+    return;
+  }
+  msg.textContent = "Sending OTP…";
+  const phone = "+91" + mobile;
+  auth.signInWithPhoneNumber(phone, recaptchaVerifier)
+    .then(result => {
+      confirmationResult = result;
+      document.getElementById("otpBox").classList.remove("hidden");
+      msg.textContent = "OTP sent. Enter the 6-digit OTP.";
+    })
+    .catch(err => {
+      console.error(err);
+      msg.textContent = "OTP could not be sent. Check Firebase Phone Authentication and authorized domain settings.";
+    });
+}
+
+function verifyDemoOtp(){
+  const otp = document.getElementById("loginOtp").value.trim();
+  const msg = document.getElementById("loginMsg");
+  if(otp.length !== 6){
+    msg.textContent = "Enter the 6-digit OTP.";
+    return;
+  }
+  if(!confirmationResult){
+    msg.textContent = "First request an OTP.";
+    return;
+  }
+  msg.textContent = "Verifying…";
+  confirmationResult.confirm(otp)
+    .then(result => {
+      msg.textContent = "Login successful.";
+      show("mybookings");
+      loadMyBookings();
+    })
+    .catch(err => {
+      console.error(err);
+      msg.textContent = "Invalid or expired OTP.";
+    });
+}
+
+function currentUserId(){
+  return firebaseReady && auth.currentUser ? auth.currentUser.uid : null;
+}
+
+async function submitBooking(){
+  if(!firebaseReady || firebaseConfig.apiKey.startsWith("PASTE_")){
+    alert("Firebase setup pending. Add the Web App config first.");
+    return;
+  }
+  const name = document.querySelector('#booking input[placeholder="Full name"]')?.value.trim();
+  const mobile = document.querySelector('#booking input[placeholder="Mobile number"]')?.value.trim();
+  const area = document.querySelector('#booking input[placeholder="Area / City"]')?.value.trim();
+  const date = document.querySelector('#booking input[type="date"]')?.value || "";
+  const note = document.querySelector('#booking textarea')?.value.trim() || "";
+  if(!name || !mobile || !area){
+    alert("Please fill Name, Mobile and Area / City.");
+    return;
+  }
+
+  const selected = Array.from(document.querySelectorAll('#catalog input:checked')).map(i => {
+    const row = i.closest(".test");
+    return row ? row.querySelector(".name")?.innerText.trim() : "";
+  }).filter(Boolean);
+
+  const booking = {
+    patientName: name,
+    mobile,
+    area,
+    preferredDate: date,
+    note,
+    tests: selected,
+    status: "Pending",
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    userId: currentUserId()
+  };
+
+  try{
+    const ref = await db.collection("bookings").add(booking);
+    alert("Booking submitted successfully. Booking ID: " + ref.id);
+    show("mybookings");
+    loadMyBookings();
+  }catch(err){
+    console.error(err);
+    alert("Booking save failed. Check Firestore rules and Firebase connection.");
+  }
+}
+
+async function loadMyBookings(){
+  const box = document.querySelector("#mybookings .section");
+  if(!box || !firebaseReady || !auth.currentUser) return;
+
+  const uid = auth.currentUser.uid;
+  try{
+    const snap = await db.collection("bookings")
+      .where("userId","==",uid)
+      .orderBy("createdAt","desc")
+      .limit(20)
+      .get();
+
+    const oldCards = box.querySelectorAll(".firebase-booking-card");
+    oldCards.forEach(x => x.remove());
+
+    snap.forEach(doc => {
+      const b = doc.data();
+      const card = document.createElement("div");
+      card.className = "card firebase-booking-card";
+      card.innerHTML = `<b>Booking #${doc.id.slice(0,8).toUpperCase()}</b>
+        <span style="float:right;background:#fff3cd;color:#856404;padding:5px 8px;border-radius:8px;font-size:11px;font-weight:800">${b.status || "Pending"}</span>
+        <p style="margin-bottom:5px">${(b.tests||[]).join(" + ") || "Custom Request"}</p>
+        <small>${b.area || ""} · ${b.preferredDate || "Date to be confirmed"}</small>`;
+      box.appendChild(card);
+    });
+  }catch(err){
+    console.warn("Could not load bookings:", err);
+  }
+}
+
+if(firebaseReady && !firebaseConfig.apiKey.startsWith("PASTE_")){
+  auth.onAuthStateChanged(user => {
+    if(user) loadMyBookings();
+  });
+}
+
+</script>
+</body>
+</html>
